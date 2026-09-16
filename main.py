@@ -1,15 +1,21 @@
 # Git: status → add → commit → push
+# edit logo.txt to change the logo
 import platform
 import psutil
 import subprocess
 
 
-version = "2.0.0" #  MAJOR.MINOR.PATCH
+version = "2.1.0" #  MAJOR.MINOR.PATCH
 ram = psutil.virtual_memory().total
 wos = platform.system() + " " +platform.release()
 
+file = open("logo.txt", "r")
 
+data = file.read()
 
+print(data)
+
+file.close()
 
 cpu = subprocess.check_output(
     "wmic cpu get name",
