@@ -1,28 +1,54 @@
 # Git: status → add → commit → push
-# edit logo.txt to change the logo
-import platform
-import psutil
-import subprocess
+import random
 
+luck = 0
+commands = ["evade", "attack", "run", "exist"]
+running = True
+ehp = 100
 
-version = "2.1.0" #  MAJOR.MINOR.PATCH
-ram = psutil.virtual_memory().total
-wos = platform.system() + " " +platform.release()
+for command in commands:
+    print("- " + command)
 
-file = open("logo.txt", "r")
+while running == True:
 
-data = file.read()
+    user_input = input("what do you like to do ? : ")
 
-print(data)
+    if user_input not in commands:
+        print("not an option")
 
-file.close()
+    elif user_input == "evade":
+        random_number = random.randint(0, 100)
 
-cpu = subprocess.check_output(
-    "wmic cpu get name",
-    shell=True
-).decode().split("\n")[1].strip()
+        if random_number + luck > 40:
+            print("evaded")
+            luck += 5
+        else:
+            print("died")
+            luck -= 10
+        print(random_number)
+        print(luck)
+        print(ehp)
+    elif user_input == "attack":
+        random_number = random.randint(0, 100)
 
-print(cpu)
-print(__import__("subprocess").check_output(["powershell", "-NoProfile", "-Command", "(Get-CimInstance Win32_VideoController).Name"]).decode().strip())
-print(f"{ram / (1024 ** 3):.1f} GB")
-print(wos)
+        if random_number + luck > 70:
+            print("attacked")
+            luck += 4
+            ehp -=  57
+        else:
+            print("died")
+            luck -=10
+
+        print(random_number)
+        print(luck)
+        print(ehp)
+    elif user_input == "run":
+        random_number = random.randint(0, 100)
+
+        if random_number + luck > 30:
+            print("you ran")
+        else:
+            print("died")
+    if ehp <= 0:
+        print("you won")
+        running = False
