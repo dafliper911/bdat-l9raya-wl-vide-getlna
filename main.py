@@ -2,7 +2,7 @@
 import random
 
 luck = 0
-commands = ["evade", "attack", "run", "exist"]
+commands = ["evade", "attack", "run", "exit"]
 running = True
 ehp = 100
 
